@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>My Blog</h1></div>
+    </div>
+    {% if articleNumber == "all":%}
+    <div class="content">
+        {% for article in articles: %}
+        <div class="card">
+                <h1>{{article["title"]}}</h1>
+                <h2>{{article["subtitle"]}}</h2>
+                <p>{{article["body"]}}</p>
+                <a href="{{ url_for('post', number=article['id']) }}">Read</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif%}
+    {% if articleNumber != "all":%}
+    <div class="content">
+        {% for article in articles: %}
+
+        {% if articleNumber == article["id"]:%}
+        <div class="card">
+                <h1>{{article["title"]}}</h1>
+                <h2>{{article["subtitle"]}}</h2>
+                <p>{{article["body"]}}</p>
+                <a href="{{ url_for('post', number=article['id']) }}">Read</a>
+        </div>
+        {% endif%}
+        {% endfor %}
+    </div>
+    {% endif%}
+</div>
+</body>
+<footer>
+    <p>Made with ♥️ in Luino.</p>
+</footer>
+</html>
